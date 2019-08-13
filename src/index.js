@@ -1,11 +1,14 @@
 import Vue from 'vue'
 import App from './app.vue'
 
-import '@/styles/global.scss'
-import router from './router'
-import store from './store'
+import './styles/global.scss'
+import createRouter from './router'
+import createStore from './store'
 
-import '@/permission'
+import './permission'
+
+const router = createRouter()
+const store = createStore()
 
 new Vue({
   router,

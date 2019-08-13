@@ -4,8 +4,10 @@ import user from './modules/user.js'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  modules: {
-    user
-  }
-})
+export default () => {
+  return new Vuex.Store({
+    modules: {
+      user
+    }
+  })
+}
