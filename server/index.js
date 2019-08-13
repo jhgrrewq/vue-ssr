@@ -1,6 +1,6 @@
 const Koa = require('koa')
 const app = new Koa()
-const bodyparser = require('koa-bodyparser')
+const bodyparser = require('koa-body')
 const apiRouter = require('./router/api')
 
 // 解析post数据并注册路由
