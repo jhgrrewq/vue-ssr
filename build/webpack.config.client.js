@@ -76,7 +76,7 @@ if (isDev) {
     },
     output: {
       filename: '[name].[chunkhash:8].js',
-      path: path.join(__dirname, '../dist')
+      publicPath: '/dist/'
     },
     module: {
       rules: [
@@ -99,14 +99,14 @@ if (isDev) {
       ]
     },
     plugins: defaultPluins.concat([
-      new ExtractPlugin('styles.[contentHash:8].css'),
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor'
-      }),
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'runtime'
-      }),
-      new webpack.NamedChunksPlugin()
+      new ExtractPlugin('styles.[contentHash:8].css')
+      // new webpack.optimize.CommonsChunkPlugin({
+      //   name: 'vendor'
+      // }),
+      // new webpack.optimize.CommonsChunkPlugin({
+      //   name: 'runtime'
+      // }),
+      // new webpack.NamedChunksPlugin()
     ])
   })
 }

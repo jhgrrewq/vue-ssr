@@ -2,6 +2,7 @@ const Koa = require('koa')
 const app = new Koa()
 const bodyparser = require('koa-body')
 const apiRouter = require('./router/api')
+const staticRouter = require('./router/static')
 
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -24,14 +25,9 @@ app.use(async (ctx, next) => {
 // 解析post数据并注册路由
 app.use(bodyparser())
 app.use(apiRouter.routes()).use(apiRouter.allowedMethods())
+app.use(staticRouter.routes()).use(staticRouter.allowedMethods())
 
-let pageRouter
-if (isDev) {
-  pageRouter = require('./router/dev-ssr')
-}
-// else {
-//   pageRouter = require('./router/ssr')
-// }
+const pageRouter = isDev ? require('./router/dev-ssr') : require('./router/ssr')
 app.use(pageRouter.routes()).use(pageRouter.allowedMethods())
 
 app.listen(3000, () => console.log('api服务已启动'))
